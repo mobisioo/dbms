@@ -1,0 +1,9 @@
+{
+  "app": "mydbms",
+  "port": 80,
+  "build": {
+    "location": "iran"
+  },
+  "disks": [],
+  "args": [ "python bot.py" ]
+}
