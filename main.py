@@ -2,18 +2,18 @@
 import os
 from telegram import Update
 from telegram.ext import Application, CommandHandler, ContextTypes
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 import db
 
-TOKEN = os.environ["8396092811:AAHKWkw8lZ4DejbAeRdIhwsQZMTaVTc1c6w"] 
+TOKEN = os.environ["BOT_TOKEN"]
 
-async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text(
-        "سلام! دستورها:\n"
-        "/tables\n"
-        "/cols <table>\n"
-        "/select <table>\n"
-        "/insert <table> key=value key=value ...\n"
-    )
+
+async def start(update, context):
+    keyboard = [
+        [InlineKeyboardButton("📋 لیست جدول‌ها", callback_data="tables")],
+        [InlineKeyboardButton("📊 نمایش داده", callback_data="select")],
+        [InlineKeyboardButton("➕ درج داده", callback_data="insert")]
+    ]
 
 async def tables(update: Update, context: ContextTypes.DEFAULT_TYPE):
     t = db.list_tables()
