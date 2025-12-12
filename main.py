@@ -9,12 +9,8 @@ TOKEN = os.environ["BOT_TOKEN"]
 
 
 async def start(update, context):
-    keyboard = [
-        [InlineKeyboardButton("📋 لیست جدول‌ها", callback_data="tables")],
-        [InlineKeyboardButton("📊 نمایش داده", callback_data="select")],
-        [InlineKeyboardButton("➕ درج داده", callback_data="insert")]
-    ]
-
+    await update.message.reply_text("مثال: /cols employees")
+    
 async def tables(update: Update, context: ContextTypes.DEFAULT_TYPE):
     t = db.list_tables()
     await update.message.reply_text("\n".join(t) if t else "هیچ جدولی نیست.")
